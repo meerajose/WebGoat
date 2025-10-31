@@ -4388,7 +4388,7 @@ wysihtml5.dom.getAsDom = (function() {
       tempElement.appendChild(html);
     } else if (wysihtml5.browser.supportsHTML5Tags(context)) {
       tempElement = context.createElement("div");
-      tempElement.innerHTML = html;
+      try { tempElement.innerHTML = html; } catch(e) {}
     } else {
       _ensureHTML5Compatibility(context);
       tempElement = _innerHTMLShiv(html, context);
