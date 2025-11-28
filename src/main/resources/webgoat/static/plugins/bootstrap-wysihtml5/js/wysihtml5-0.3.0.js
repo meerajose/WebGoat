@@ -4076,7 +4076,7 @@ wysihtml5.browser = (function() {
       return element.classList.remove(className);
     }
 
-    element.className = element.className.replace(new RegExp("(^|\\s+)" + className + "(\\s+|$)"), " ");
+    element.className = element.className.replace(new RegExp("(^|\\s+)" + className.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + "(\\s+|$)"), " ");
   };
 
   api.hasClass = function(element, className) {
@@ -4085,7 +4085,7 @@ wysihtml5.browser = (function() {
     }
 
     var elementClassName = element.className;
-    return (elementClassName.length > 0 && (elementClassName == className || new RegExp("(^|\\s)" + className + "(\\s|$)").test(elementClassName)));
+    return (elementClassName.length > 0 && (elementClassName == className || new RegExp("(^|\\s)" + className.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + "(\\s|$)").test(elementClassName)));
   };
 })(wysihtml5);
 wysihtml5.dom.contains = (function() {
